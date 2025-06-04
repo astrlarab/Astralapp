@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الفلك التنجيمي العربي</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lateef:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lateef', serif;
+            background-color: #0a0a1a;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* الهيدر المعدل */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: linear-gradient(90deg, #1a0e0e 0%, #0e0a2a 50%, #1a0e0e 100%);
+            border-bottom: 3px solid #8B4513;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 120px;
+        }
+        
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .right-image {
+            height: 100px;
+            filter: drop-shadow(0 0 8px #e6b873);
+        }
+        
+        .title {
+            font-size: 32px;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            margin: 0;
+            white-space: nowrap;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .center-box {
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .quran-verse {
+            color: #FFFFFF;
+            font-size: 26px;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .surah-info {
+            color: #a0a0a0;
+            font-size: 20px;
+            margin: 8px 0 0 0;
+            font-style: italic;
+        }
+        
+        .left-section {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+        
+        .left-text {
+            color: #D4AF37;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .left-text:hover {
+            color: #FFD700;
+            background: rgba(165, 42, 42, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            font-size: 18px;
+            color: #A52A2A;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        /* العمود الأيمن الجديد (بحجم النصف) */
+        .sidebar {
+            width: 15.33%;
+            background: rgba(20, 15, 40, 0.95);
+            padding: 30px 20px;
+            margin-top: 150px;
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: calc(100vh - 150px);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.4);
+            border-left: 1px solid rgba(255, 215, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            overflow-y: auto;
+        }
+        
+        .menu-nav {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5px;
+            margin-top: 20px;
+        }
+        
+        .menu-item {
+            padding: 15px 5px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            letter-spacing: 0.5px;
+            padding: 3px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 215, 0, 0.15);
+            transform: translateX(-5px);
+            box-shadow: 3px 0 8px rgba(0,0,0,0.2);
+        }
+        
+        /* المحتوى الرئيسي المعدل */
+        .main-content {
+            margin-right: 15.33%;
+            margin-top: 120px;
+            padding: 40px;
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+            height: calc(100vh - 150px);
+        }
+        
+        /* بطاقات المحتوى */
+        .content-card {
+            background: linear-gradient(135deg, #080814 0%, #161632 100%);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            color: #f8f8f8;
+            font-family: 'Amiri', serif;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            box-sizing: border-box;
+        }
+        
+        .horoscope-invitation {
+            /* نفس أنماط البطاقة الأولى */
+        }
+        
+        .image-card {
+            display: flex;
+            padding: 0;
+            min-height: 100%;
+        }
+        
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-card:hover img {
+            transform: scale(1.03);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        /* الرموز الفلكية العائمة */
+        .astral-symbol {
+            position: absolute;
+            font-size: 22px;
+            opacity: 0.7;
+            animation: float 7s infinite ease-in-out;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="right-section">
+            <img src="https://i.ibb.co/RGwDkd7s/removebg-preview.png" alt="رمز فلكي" class="right-image">
+            <h1 class="title">موقع الفلك التنجيمي العربي</h1>
+        </div>
+        
+        <div class="center-box">
+            <p class="surah-info">[ بسم الله الرحمن الرحيم ]</p>
+            <p class="quran-verse">﴿ فَلَا أُقْسِمُ بِمَوَاقِعِ النُّجُومِ ﴾</p>
+            <p class="surah-info">[ الواقعة: 75 ]</p>
+        </div>
+        
+        <div class="left-section">
+            <a href="#" class="left-text">ما هو الفلك التنجيمي؟</a>
+            <a href="#" class="left-text">أسطرلاب</a>
+            <span class="copyright">AstralApp ©</span>
+        </div>
+    </header>
+    
+    <!-- العمود الأيمن الجديد -->
+    <div class="sidebar">
+        <nav class="menu-nav">
+            <div class="menu-item"><a href="#" title="طلب قراءة وتحليل فلكي">طلب قراءة وتحليل فلكي</a></div>
+            <div class="menu-item"><a href="#" title="تعلم الفلك التنجيمي">تعلم الفلك التنجيمي</a></div>
+            <div class="menu-item"><a href="#" title="عن الموقع">عن الموقع</a></div>
+            <div class="menu-item"><a href="#" title="المكتبة">المكتبة</a></div>
+            <div class="menu-item"><a href="#" title="راسلنا">راسلنا</a></div>
+        </nav>
+    </div>
+    
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+        <!-- البطاقة الأولى -->
+        <div class="content-card horoscope-invitation">
+            <!-- الرموز حول الصورة -->
+            <span class="astral-symbol" style="top: 18%; left: 50%; font-size: 26px; color: gold; margin-top: -90px;">☉</span>
+            <span class="astral-symbol" style="top: 22%; right: 30%; font-size: 24px; color: #ff5e5e; animation-duration: 8s; animation-direction: reverse;">♂</span>
+            <span class="astral-symbol" style="top: 10%; left: 20%; font-size: 24px; color: #ff7b00; animation-duration: 9s;">🜂</span>
+            <span class="astral-symbol" style="top: 10%; right: 30%; font-size: 22px; color: #ff4500; animation-duration: 7.5s; animation-direction: reverse;">♈︎</span>
+            <span class="astral-symbol" style="top: 1%; left: 30%; font-size: 22px; color: #ffcc00; animation-duration: 8.5s;">♌︎</span>
+            <span class="astral-symbol" style="top: 38%; right: 15%; font-size: 24px; color: #9d4edd; animation-duration: 9s; animation-direction: reverse;">♃</span>
+            <span class="astral-symbol" style="top: 8%; left: 25%; font-size: 24px; color: #c77dff; animation-duration: 7s;">♐︎</span>
+
+            <!-- الرموز في النصف السفلي -->
+            <span class="astral-symbol" style="bottom: 10%; left: 15%; font-size: 22px; color: #d1d5db;">♒︎</span>
+            <span class="astral-symbol" style="bottom: 90%; right: 20%; font-size: 24px; color: silver; animation-duration: 9s; animation-direction: reverse;">☽</span>
+            <span class="astral-symbol" style="bottom: 5%; right: 10%; font-size: 22px; color: #a5d8ff; animation-duration: 7.5s;">♋︎</span>
+            <span class="astral-symbol" style="bottom:5%; left: 5%; font-size: 23px; color: #d6d3d1; animation-duration: 8.5s; animation-direction: reverse;">♏︎</span>
+            <span class="astral-symbol" style="bottom: 60%; left: 50%; font-size: 24px; color: #7f1d1d; animation-duration: 9.5s;">♄</span>
+            <span class="astral-symbol" style="bottom: 100%; right: 105%; font-size: 22px; color: #f9a8d4; animation-duration: 7s; animation-direction: reverse;">♀</span>
+            <span class="astral-symbol" style="bottom: 80%; left: 30%; font-size: 23px; color: #3b82f6; animation-duration: 8s;">♓︎</span>
+
+            <!-- الصورة المركزية -->
+            <div style="
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin: 0 auto 25px;
+                border: 4px solid #FFD700;
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+                background: #000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                z-index: 2;
+            ">
+                <img src="https://i.ibb.co/0pQPtR7Z/image.png" alt="رمز فلكي" style="
+                    width: 95%;
+                    height: 95%;
+                    object-fit: contain;
+                    filter: brightness(1.05);
+                    transform: translateY(5px);
+                ">
+            </div>
+            
+            <!-- العنوان -->
+            <h3 style="
+                font-size: 34px;
+                margin: 20px 0;
+                color: #FFD700;
+                text-shadow: 0 3px 10px rgba(255, 215, 0, 0.6);
+                position: relative;
+                z-index: 2;
+                font-weight: 700;
+                letter-spacing: 1px;
+            ">
+                تحليل شخصيتك الفلكية والطبيعية
+            </h3>
+            
+            <p style="
+                font-size: 22px;
+                line-height: 1.9;
+                margin-bottom: 30px;
+                position: relative;
+                z-index: 2;
+                padding: 0 15px;
+                color: #f3f4f6;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+            ">
+                الأبراج والأفلاك دليل لقراءة الطبائع الإنسانية الأساسية، أدخل بيانات ميلادك واكتشف صفاتك الفطرية الأساسية، من خلال تحليل مواقيت بروجك الشمسية والقمرية والمواسم الفلكية وعناصر الطبيعة ،احصل على مخططك الفلكي "خارطة فلك البروج" وتعرف على جوانبك النجمية بشكل مختلف .
+            </p>
+            
+            <button style="
+                background: linear-gradient(to right, #e6b873 0%, #f5d995 100%);
+                border: none;
+                padding: 16px 40px;
+                border-radius: 50px;
+                color: #1e293b;
+                font-weight: bold;
+                font-size: 21px;
+                cursor: pointer;
+                transition: all 0.3s;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+                font-family: 'Amiri', serif;
+                position: relative;
+                z-index: 2;
+                margin-top: auto;
+                letter-spacing: 1px;
+            ">
+                ابدأ التحليل الآن
+            </button>
+        </div>
+        
+        <!-- البطاقة الثانية -->
+        <a href="#" class="content-card image-card">
+            <img src="https://i.ibb.co/35JsWsSF/image.png" alt="تعلم الفلك التنجيمي">
+        </a>
+        
+        <!-- البطاقة الثالثة -->
+        <a href="#" class="content-card image-card">
+            <img src="https://i.ibb.co/FLBfkVMJ/image.png" alt="طلب قراءة وتحليل فلكي">
+        </a>
+    </div>
+    
+</body>
+</html>
